@@ -28,13 +28,13 @@ library(ballgown)
 ## que contenga como primera columna los nombres de las carpetas donde se guarda
 ## cada muesra típicamente sample1, sample2, etc ... El resto de columnas
 ## haran referencia al genotipo, tratamiento y demás caracteriśticas de cada muestra. 
-pheno.data <- read.csv("pheno_data.csv")
+pheno.data <- read.csv("01-documentation/pheno_data.csv")
 pheno.data
 
 ## La función ballgown se usa para cargar o leer los datos. Es necesario especificar
 ## el directorio donde se encuentra las muestras. En nuestro caso especificamos .
 ## para indicar que se encuentran en el actual directorio. 
-bg.data <- ballgown(dataDir = ".", samplePattern = "sample", pData=pheno.data)
+bg.data <- ballgown(dataDir = "03-data/samples/", samplePattern = "sample", pData=pheno.data)
 bg.data
 sampleNames(bg.data)
 
@@ -67,7 +67,7 @@ boxplot(log2(gene.expression.1), outline=F,col=rainbow(4),
 
 ## En este punto ballgown no realiza ninguna normalización de los datos más alla
 ## del cálculo de los niveles de expresión por FPKM.
-## Utilizamos el paquete de R NormalyzerDE para esta tarea. Para ello es neceario generar
+## Utilizamos el paquete de R NormalyzerDE para esta tarea. Para ello es necesario generar
 ## un fichero con un formato específico.
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
