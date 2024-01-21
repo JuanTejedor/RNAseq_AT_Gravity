@@ -70,20 +70,16 @@ boxplot(log2(gene.expression.1), outline=F,col=rainbow(4),
 ## Utilizamos el paquete de R NormalyzerDE para esta tarea. Para ello es necesario generar
 ## un fichero con un formato específico.
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
- install.packages("BiocManager")
-BiocManager::install("NormalyzerDE")
-
 library(NormalyzerDE)
 
 design <- data.frame(sample=colnames(gene.expression),
-                     group=c(rep("col0",2),rep("abc",2)))
+                     group=c(rep("control",3),rep("moon",3)))
 
-write.table(x = design,file = "normalyzer_design.tsv",quote = F,row.names = F,
+write.table(x = design,file = "01-documentation/normalyzer_design.tsv",quote = F,row.names = F,
             sep = "\t")
 
-normalyzer(jobName = "PCG",designPath = "normalyzer_design.tsv",
-           dataPath = "pcg_gene_expression.tsv",outputDir = ".")
+normalyzer(jobName = "AT_Gravity_norm",designPath = "01-documentation/normalyzer_design.tsv",
+           dataPath = "04-results/gene_expression_unprocessed.tsv",outputDir = "04-results/")
 
 
 normalized.gene.expression <- read.table(file="PCG/Quantile-normalized.txt", header=T)
