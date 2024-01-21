@@ -79,10 +79,10 @@ write.table(x = design,file = "01-documentation/normalyzer_design.tsv",quote = F
             sep = "\t")
 
 normalyzer(jobName = "AT_Gravity_norm",designPath = "01-documentation/normalyzer_design.tsv",
-           dataPath = "04-results/gene_expression_unprocessed.tsv",outputDir = "04-results/")
+           dataPath = "04-results/gene_expression_unprocessed.tsv",outputDir = "04-results/"[])
+# Tras ver los resultados, parece ser que CycLoess es el mejor método de normalización pues consigue una baja variabilidad intragrupo, un alto coeficiente de correlación intragrupo, agrupa bien las muestras y, además, no elimina diferencias significativas entre condiciones.
 
-
-normalized.gene.expression <- read.table(file="PCG/Quantile-normalized.txt", header=T)
+normalized.gene.expression <- read.table(file="04-results/AT_Gravity_norm/CycLoess-normalized.txt", header=T)
 head(normalized.gene.expression)
 rownames(normalized.gene.expression) <- gene.names
  
