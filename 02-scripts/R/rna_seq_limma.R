@@ -93,28 +93,34 @@ boxplot(normalized.gene.expression, outline=F,col=color,
         ylab="log2(FPKM + 1)",cex.lab=1.5)
 
 ## Previsualizamos la similitud entre las réplicas
-plot(x = normalized.gene.expression[,"col0_1"],
-     y = normalized.gene.expression[,"col0_2"],
-     pch=19,col="grey",xlab="Col0_1",ylab="Col0_2",cex=0.5)
-text(x=3,y=14,
-     labels = paste(c(
-      "cor = ",
-      round(100*cor(normalized.gene.expression[,"col0_1"],
-                    normalized.gene.expression[,"col0_2"]),
-            digits = 2),
-      "%"), collapse=""))
 
 
-plot(x = normalized.gene.expression[,"abc_1"],
-     y = normalized.gene.expression[,"abc_2"],
-     pch=19,col="grey",xlab="abc_1",ylab="abc_2",cex=0.5)
-text(x=3,y=14,
-     labels = paste(c(
-      "cor = ",
-      round(100*cor(normalized.gene.expression[,"abc_1"],
-                    normalized.gene.expression[,"abc_2"]),
-            digits = 2),
-      "%"), collapse=""))
+scatter_replicates <- function(obj,comparation_matrix, color=c("grey","purple")) {
+  par(mfrow=c(ncol(comparation_matrix),c(nrow(comparation_matrix)/ncol(comparation_matrix))))
+  for (i in 1:nrow(comparation_matrix)) {
+    a=comparation_matrix[i,1]
+    b=comparation_matrix[i,2]
+    index_color=1
+    if (i>3) {
+      index_color=2
+    }
+    plot(x = obj[,a],
+         y = obj[,b],
+         pch=19,col=color[index_color],xlab=colnames(obj)[a],ylab=colnames(obj)[b],cex=0.5)
+    text(x=3,y=10,
+         labels = paste(c(
+           "R2 = ",
+           round(100*cor(obj[,a],
+                         obj[,b]),
+                 digits = 2),
+           "%"), collapse=""))
+  }
+  par(mfrow=c(1,1))
+}
+
+comparaciones = matrix(c(1,2,1,3,2,3,4,5,4,6,5,6), nrow = 6, ncol = 2, byrow = T)
+scatter_replicates(normalized.gene.expression,comparaciones)
+
 
 ## Realizamos un análisis de componentes principales y clustering 
 ## jerárquico para continuar con la exploración de los datos.
