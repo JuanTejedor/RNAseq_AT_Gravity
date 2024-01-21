@@ -46,14 +46,14 @@ dim(gene.expression)
 gene.names <- rownames(gene.expression)
 
 ## Nombramos las columnas con los nombres de nuestras muestras. 
-colnames(gene.expression) <- c("col0_1","col0_2","abc_1","abc_2")
+colnames(gene.expression) <- c("control1","control2","control3","moon1","moon2","moon3")
 
 ## Por motivos técnicos sumamos 1 a todos los niveles de expresión. 
 ## El problema viene provocado por x < 1 --> log2(x) < 0
 gene.expression.1 <- gene.expression + 1
 
 ## Guardamos los datos de expresión génica sin procesar
-write.table(x = gene.expression.1,file = "pcg_gene_expression.tsv",
+write.table(x = gene.expression.1,file = "04-results/gene_expression_unprocessed.tsv",
             quote = F,row.names = F,
             sep = "\t")
 
