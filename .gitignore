@@ -34,3 +34,21 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+# Biological files
+
+*.bam
+*.sam.gz
+*.sam
+*.fastq.gz
+*.fq.gz
+*.fastq
+*.fq
+*.fasta.gz
+*.fna.gz
+*.ffn.gz
+*.fa.gz
+*.fasta
+*.fna
+*.ffn
+*fa

@@ -1,0 +1,37 @@
+Nombre, enlace, tiporead
+Sample01 (control, rep1)
+enlace raw data R1:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_175_UMISS_Hoeksema_AGTTCC_L002_R1_001.fastq.gz&version=1
+enlace raw data R2:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_175_UMISS_Hoeksema_AGTTCC_L002_R2_001.fastq.gz&version=1
+
+Sample02 (control, rep2)
+enlace raw data R1:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_179_UMISS_Hoeksema_CCGTCC_L003_R1_001.fastq.gz&version=1
+enlace raw data R2:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_179_UMISS_Hoeksema_CCGTCC_L003_R2_001.fastq.gz&version=1
+
+Sample03 (control, rep3)
+enlace raw data R1:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_235_239_UMISS_Hoeksema_GTTTCG_L003_R1_001.fastq.gz&version=1
+enlace raw data R2:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_235_239_UMISS_Hoeksema_GTTTCG_L003_R2_001.fastq.gz&version=1
+
+Sample04 (luna, rep1)
+enlace raw data R1:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_135_UMISS_Hoeksema_GCCAAT_L001_R1_001.fastq.gz&version=1
+enlace raw data R2:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_135_UMISS_Hoeksema_GCCAAT_L001_R2_001.fastq.gz&version=1
+
+Sample05 (luna, rep2)
+enlace raw data R1:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_151_UMISS_Hoeksema_GATCAG_L002_R1_001.fastq.gz&version=1
+enlace raw data R2:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_151_UMISS_Hoeksema_GATCAG_L002_R2_001.fastq.gz&version=1
+
+Sample06 (luna, rep3)
+enlace raw data R1:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_156_UMISS_Hoeksema_GGCTAC_L002_R1_001.fastq.gz&version=1
+enlace raw data R2:
+https://osdr.nasa.gov/geode-py/ws/studies/OSD-251/download?file=GLDS-251_rna-seq_13JUN2017HiSeq_Run_Sample_156_UMISS_Hoeksema_GGCTAC_L002_R2_001.fastq.gz&version=1
+

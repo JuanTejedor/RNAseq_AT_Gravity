@@ -1,0 +1,140 @@
+# Título
+
+#### Autores: 
+
+## Introducción
+
+### Antecedentes
+
+Un párrafo o dos describiendo la motivación o antecedentes del estudio. Así se escribe en **negrita** y *cursiva*.
+
+### Objetivo
+
+Un párrafo o dos describiendo concisamente el objetivo del estudio. 
+
+Puntuación: 0.5
+
+## Materiales y Métodos
+
+### Diseño Experimental
+
+Un párrafo para mencionar el número de acceso GSE del estudio en GEO. 
+Una lista de puntos para describir brevemente las condiciones y muestras que se usan en el estudio. 
+Identificar que condiciones se consideran controles. 
+
+Una lista de puntos se especifica en Rmarkdown como sigue:
+
+  * Punto uno
+    + Subpunto uno
+    + Subpunto dos
+  
+  * Punto dos
+
+### Flujo de trabajo
+
+Describir brevemente en dos o tres párrafos el flujo de trabajo para ánalisis de datos de RNA-seq.
+
+Añadir una representación gráfica desarrollada por vosotros del flujo de trabajo.
+
+Así se añade una imagen:
+
+![ Texto del pie de figura. ](images/workflow.jpg)
+
+Puntuación: 0.5 
+
+## Resultados
+
+### Análisis de la calidad
+
+Generar el gráfico correspondiente al análisis de la calidad y comentarlo de forma detallada en un párrafo.
+
+Comentar la necesidad de realizar un pre-procesamiento de los datos. Mencionar el algoritmo utilizado y los
+procesamientos que realiza.
+
+Generar dos boxplots uno antes y el otro después de realizar el pre.procesamiento de los datos. Comenta esta figura.
+
+Para incluir código R se sigue la siguiente sintáxis.
+
+```{r}
+my.vect <- c(1,2,3,4)
+mean(my.vect)
+max(my.vect)
+min(my.vect)
+boxplot(my.vect,col="blue",ylab="My vect",cex.lab=2)
+```
+
+Puntuación: 1
+
+### Análisis de la distribución global de la Expresión Génica
+
+Representar la distribución global génica sin procesar usando un boxplot.
+
+Discutir la necesidad de realizar un preprocesamiento de los datos o normalización.
+
+Representar la distribución global génica tras la normalización usando un boxplot.
+
+Representar usando scatter plots la similitud entre las réplicas.
+
+Realizar un análisis de componentes principales y clustering jerárquico para comentar la estructura subyacente en vuestros datos. 
+
+
+### Análisis de Expresión Génica Diferencial
+
+Genera scatterplots comparando las condiciones experimentales con el control y argumenta una selección de fold change.
+
+Establecer un criterio de selección de genes expresados de forma diferencial argumentando dicha elección.
+
+Para cada comparación entre condiciones que se considere oportuno realizar los siguientes puntos:
+  * Un breve comentario del objetivo de dicha comparación.
+  * Generar un gráfico de dispersión o de volcán según el criterio de expresión diferencial seleccionado, marcar algunos genes destacados en el gráfico y comentarlos brevemente en el texto. 
+  * Generar los ficheros txt listas de los genes expresados de forma diferencial e incluir enlaces a ellos.
+
+Si es aplicable, comparar distintos conjuntos de genes expresados de forma diferencial usando diagramas de Venn. Comentar concisamente los genes en común y los específicos destacando algunos genes en concreto. Añadir la imagen del diagrama de Venn. 
+
+Así se añade el enlace a un fichero:
+
+[Enlace a otro fichero](activated_genes_WT_with_no_Fe_1.txt)  
+
+Puntuación: 3
+
+### Análisis de Enriquecimiento de Términos de Ontología Génica
+
+Describir brevemente que es la ontología de genes. Comentar la finalidad de realizar un enriquecimiento de términos de ontología de genes.
+
+Para los conjuntos de genes expresados de forma diferencial que estimes oportuno realiza un enriquecimiento de términos de ontología de genes basado en términos GO. Explora el uso de la herramienta online
+ReVIGO (http://revigo.irb.hr/) para resumir, eliminar redundancia y visualizar el resultado de enriquecimiento de términos GO. Incluye la imagen del treemap generado por ReVIGO y genera una tabla resumen con tres columnas. La primera columna debe especificar el identificador del término de GO y su q-valor, la segunda columna debe contener la descripción del término de GO en inglés y la última columna debe especificar alguno genes representativos. 
+
+Comenta la tabla e imagen de forma detallada y concisa. 
+
+Las tablas en Rmarkdown se escriben así:
+
+Término de GO | Descripción | Genes Representativos
+------------ | -------------| -------------
+Table Cell   | Cell 2       | la
+Cell 3       | Cell 4       | la
+
+Para los conjuntos de genes expresados de forma diferencial que estimes oportuno realiza un enriquecimiento de términos de rutas KEGG y visualiza las que consideres oportunas.
+
+Puntuación: 3
+
+## Conclusiones
+
+Relacionar todos los resultados anteriores para formular conclusiones del análisis realizado.
+
+Relacionar los resultados obtenidos con los descritos en el artículo seleccionado.
+
+Propón algún experimento que creas oportuno realizar en el laboratorio para validar los resultados obtenidos. 
+
+Puntuación: 1.5
+
+## Referencias
+
+En orden alfabético según el apellido del primer autor. 
+
+autores (fecha) título del artículo, título de la revista en cursiva, volumen(número), páginas.
+
+Como se refiere en el texto artículos con un único autor (Apellido del autor, año)
+Como se refiere en el texto artículos con dos autores (Apellido primer autor & Apellido segundo autor, año)
+Como se refiere en el texto artículos con más de dos autores (Apellido primer autor et al, año)
+
+Puntuación: 0.5
