@@ -52,3 +52,5 @@ vignettes/*.pdf
 *.fna
 *.ffn
 *fa
+*.gtf
+*.ctab
