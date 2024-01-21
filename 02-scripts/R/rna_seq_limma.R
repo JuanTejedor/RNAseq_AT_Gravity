@@ -184,14 +184,14 @@ fviz_nbclust(x=pca.gene.expression[,-1], method = "gap_stat",FUNcluster = cluste
 control <- apply(normalized.gene.expression[1:3], MARGIN = 1,FUN = mean)
 moon <- apply(normalized.gene.expression[4:6], MARGIN = 1,FUN = mean)
 
-mean.expression <- matrix(c(col0,abc),ncol=2)
-colnames(mean.expression) <- c("col0","abc")
+mean.expression <- matrix(c(control,moon),ncol=2)
+colnames(mean.expression) <- c("control","moon")
 rownames(mean.expression) <- rownames(normalized.gene.expression)
 head(mean.expression)
 
 ## Previsualizamos el efecto de la mutación en un scatterplot.
-plot(col0,abc,pch=19,cex=0.7,xlab="Col0",
-     ylab=substitute(italic("abc")),
+plot(control,moon,pch=19,cex=0.7,xlab="Control",
+     ylab=substitute(italic("Moon")),
      cex.lab=1.25,
      col="grey")
 
@@ -203,8 +203,8 @@ library(limma)
 
 ## Especificamos el diseño experimental
 
-experimental.design <- model.matrix(~ -1+factor(c(1,1,2,2)))
-colnames(experimental.design) <- c("col0","abc")
+experimental.design <- model.matrix(~ -1+factor(c(1,1,1,2,2,2)))
+colnames(experimental.design) <- c("control","moon")
 
 ##A continuación, ajustamos la estimación de los niveles de expresión de cada
 ##gen a un modelo lineal teniendo en cuenta el diseño experimental. Este paso
@@ -218,7 +218,7 @@ linear.fit <- lmFit(normalized.gene.expression, experimental.design)
 ##correspondientes separadas por un guión -. También recibe el argumento 
 ##levels, un vector con el nombre de las condiciones:
 
-contrast.matrix <- makeContrasts(abc-col0,levels=c("col0","abc"))
+contrast.matrix <- makeContrasts(moon-control,levels=c("control","moon"))
 
 ##Calculamos el fold-change y los p-valores correspondientes para cada gen en
 ##cada uno de los constrastes especificados utilizando las funciones *constrasts.fit* 
@@ -229,12 +229,12 @@ contrast.results <- eBayes(contrast.linear.fit)
 
 nrow(normalized.gene.expression)
 
-col0.abc <- topTable(contrast.results, number=7507,coef=1,sort.by="logFC")
-head(col0.abc)
+control.moon <- topTable(contrast.results, number=7507,coef=1,sort.by="logFC")
+head(control.moon)
 
-log.fold.change <- col0.abc$logFC
-q.value <- col0.abc$adj.P.Val
-genes.ids <- rownames(col0.abc)
+log.fold.change <- control.moon$logFC
+q.value <- control.moon$adj.P.Val
+genes.ids <- rownames(control.moon)
 names(log.fold.change) <- genes.ids
 names(q.value) <- genes.ids
 
