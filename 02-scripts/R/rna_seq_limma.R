@@ -58,10 +58,11 @@ write.table(x = gene.expression.1,file = "04-results/gene_expression_unprocessed
             sep = "\t")
 
 ## Representación de la distribución global de la expresión génica
-boxplot(gene.expression, outline=F,col=rainbow(4),ylab="Gene Expression (FPKM)",
+color=c(rep("grey",3), rep("purple",3))
+boxplot(gene.expression, outline=F,col=color,ylab="Gene Expression (FPKM)",
         cex.lab=1.5)
 
-boxplot(log2(gene.expression.1), outline=F,col=rainbow(4),
+boxplot(log2(gene.expression.1), outline=F,col=color,
         ylab="log2(Gene Expression)",
         cex.lab=1.5)
 
@@ -88,7 +89,7 @@ rownames(normalized.gene.expression) <- gene.names
  
 ## Representación de la distribución global de la expresión génica tras 
 ## normalización
-boxplot(normalized.gene.expression, outline=F,col=rainbow(4),
+boxplot(normalized.gene.expression, outline=F,col=color,
         ylab="log2(FPKM + 1)",cex.lab=1.5)
 
 ## Previsualizamos la similitud entre las réplicas
