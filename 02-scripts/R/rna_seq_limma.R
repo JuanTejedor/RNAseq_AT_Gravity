@@ -141,18 +141,10 @@ pca.gene.expression <- data.frame(colnames(normalized.gene.expression),
 colnames(pca.gene.expression)[1] <- "Sample"
 head(pca.gene.expression)
 
+## PCA
 res.pca <- PCA(pca.gene.expression, graph = FALSE,scale.unit = TRUE,quali.sup = 1 )
-res.hcpc <- HCPC(res.pca, graph=FALSE,nb.clust = 2)   
-fviz_dend(res.hcpc,k=2,
-          cex = 0.75,                       # Label size
-          palette = "jco",               # Color palette see ?ggpubr::ggpar
-          rect = TRUE, rect_fill = TRUE, # Add rectangle around groups
-          rect_border = "jco",           # Rectangle color
-          type="rectangle",
-          labels_track_height = 1400      # Augment the room for labels
-)
-
-fviz_pca_ind(res.pca, col.ind = c("Col0","Col0","abc","abc"), 
+fviz_screeplot(res.pca)
+fviz_pca_ind(res.pca, col.ind = c(rep("Control",3),rep("Moon",3)), 
              pointsize=2, pointshape=21,fill="black",
              repel = TRUE, 
              addEllipses = TRUE,ellipse.type = "confidence",
@@ -160,10 +152,37 @@ fviz_pca_ind(res.pca, col.ind = c("Col0","Col0","abc","abc"),
              title="",
              show_legend=TRUE,show_guide=TRUE)
 
+## Cluster jerárquico
+res.hcpc <- HCPC(res.pca, graph=FALSE,nb.clust = 2)   
+
+fviz_dend(res.hcpc,k=2,
+          cex = 0.75,                       # Label size
+          palette = "jco",               # Color palette see ?ggpubr::ggpar
+          rect = TRUE, rect_fill = TRUE, # Add rectangle around groups
+          rect_border = "jco",           # Rectangle color
+          type="rectangle",
+)
+
+res.agnes <- cluster::agnes(pca.gene.expression, method = "ward")
+fviz_dend(res.agnes,k=2,
+          cex = 0.75,                       # Label size
+          palette = "jco",               # Color palette see ?ggpubr::ggpar
+          rect = TRUE, rect_fill = TRUE, # Add rectangle around groups
+          rect_border = "jco",           # Rectangle color
+          type="rectangle",
+)
+
+
+## Cluster partición
+res.agnes <- cluster::pam(pca.gene.expression, k=2)
+fviz_nbclust(x=pca.gene.expression[,-1], method = "gap_stat",FUNcluster = cluster::pam, k=5)
+fviz_nbclust(x=pca.gene.expression[,-1], method = "wss",FUNcluster = cluster::pam, k=5)
+fviz_nbclust(x=pca.gene.expression[,-1], method = "gap_stat",FUNcluster = cluster::pam, k=5)
+
 
 ## Calculamos la matrix de expresión media. 
-col0 <- (normalized.gene.expression[,"col0_1"] + normalized.gene.expression[,"col0_2"])/2
-abc <- (normalized.gene.expression[,"abc_1"] + normalized.gene.expression[,"abc_2"])/2
+control <- apply(normalized.gene.expression[1:3], MARGIN = 1,FUN = mean)
+moon <- apply(normalized.gene.expression[4:6], MARGIN = 1,FUN = mean)
 
 mean.expression <- matrix(c(col0,abc),ncol=2)
 colnames(mean.expression) <- c("col0","abc")
