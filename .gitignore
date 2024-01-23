@@ -54,3 +54,4 @@ vignettes/*.pdf
 *fa
 *.gtf
 *.ctab
+*.Rproj

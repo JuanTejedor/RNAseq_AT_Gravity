@@ -1,0 +1,70 @@
+DESCARGA DE DATOS
+Read 28020955 spots for SRR25133240
+Written 28020955 spots for SRR25133240
+EJECUCION DE FASTQC
+Started analysis of SRR25133240_1.fastq.gz
+Approx 5% complete for SRR25133240_1.fastq.gz
+Approx 10% complete for SRR25133240_1.fastq.gz
+Approx 15% complete for SRR25133240_1.fastq.gz
+Approx 20% complete for SRR25133240_1.fastq.gz
+Approx 25% complete for SRR25133240_1.fastq.gz
+Approx 30% complete for SRR25133240_1.fastq.gz
+Approx 35% complete for SRR25133240_1.fastq.gz
+Approx 40% complete for SRR25133240_1.fastq.gz
+Approx 45% complete for SRR25133240_1.fastq.gz
+Approx 50% complete for SRR25133240_1.fastq.gz
+Approx 55% complete for SRR25133240_1.fastq.gz
+Approx 60% complete for SRR25133240_1.fastq.gz
+Approx 65% complete for SRR25133240_1.fastq.gz
+Approx 70% complete for SRR25133240_1.fastq.gz
+Approx 75% complete for SRR25133240_1.fastq.gz
+Approx 80% complete for SRR25133240_1.fastq.gz
+Approx 85% complete for SRR25133240_1.fastq.gz
+Approx 90% complete for SRR25133240_1.fastq.gz
+Approx 95% complete for SRR25133240_1.fastq.gz
+Analysis complete for SRR25133240_1.fastq.gz
+Started analysis of SRR25133240_2.fastq.gz
+Approx 5% complete for SRR25133240_2.fastq.gz
+Approx 10% complete for SRR25133240_2.fastq.gz
+Approx 15% complete for SRR25133240_2.fastq.gz
+Approx 20% complete for SRR25133240_2.fastq.gz
+Approx 25% complete for SRR25133240_2.fastq.gz
+Approx 30% complete for SRR25133240_2.fastq.gz
+Approx 35% complete for SRR25133240_2.fastq.gz
+Approx 40% complete for SRR25133240_2.fastq.gz
+Approx 45% complete for SRR25133240_2.fastq.gz
+Approx 50% complete for SRR25133240_2.fastq.gz
+Approx 55% complete for SRR25133240_2.fastq.gz
+Approx 60% complete for SRR25133240_2.fastq.gz
+Approx 65% complete for SRR25133240_2.fastq.gz
+Approx 70% complete for SRR25133240_2.fastq.gz
+Approx 75% complete for SRR25133240_2.fastq.gz
+Approx 80% complete for SRR25133240_2.fastq.gz
+Approx 85% complete for SRR25133240_2.fastq.gz
+Approx 90% complete for SRR25133240_2.fastq.gz
+Approx 95% complete for SRR25133240_2.fastq.gz
+Analysis complete for SRR25133240_2.fastq.gz
+EJECUCION DE HISAT (paired reads)
+28020955 reads; of these:
+  28020955 (100.00%) were paired; of these:
+    2969698 (10.60%) aligned concordantly 0 times
+    24392991 (87.05%) aligned concordantly exactly 1 time
+    658266 (2.35%) aligned concordantly >1 times
+    ----
+    2969698 pairs aligned concordantly 0 times; of these:
+      794806 (26.76%) aligned discordantly 1 time
+    ----
+    2174892 pairs aligned 0 times concordantly or discordantly; of these:
+      4349784 mates make up the pairs; of these:
+        3032882 (69.72%) aligned 0 times
+        1261550 (29.00%) aligned exactly 1 time
+        55352 (1.27%) aligned >1 times
+94.59% overall alignment rate
+EJECUCION DE SAMTOOLS (sam a bam)
+[bam_sort_core] merging from 26 files and 1 in-memory blocks...
+ELIMINACION DE SAM Y FASTQ.GZ
+EJECUCION DE SAMTOOLS (indice)
+EJECUCION DE STRINGTIE (ensamblado)
+EJECUCION DE STRINGTIE (cuantificacion)
+ELIMINACION DE bam
+##################### FINAL #####################
