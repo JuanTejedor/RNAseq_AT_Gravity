@@ -1,7 +1,9 @@
 sample,condition
-sample01,control
-sample02,control
-sample03,control
-sample04,moon
-sample05,moon
-sample06,moon
+sample01,humedad_alta
+sample02,humedad_alta
+sample03,humedad_alta
+sample04,humedad_alta
+sample05,humedad_baja
+sample06,humedad_baja
+sample07,humedad_baja
+sample08,humedad_baja
