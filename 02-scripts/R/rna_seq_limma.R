@@ -221,7 +221,9 @@ linear.fit <- lmFit(normalized.gene.expression, experimental.design)
 ##correspondientes separadas por un guión -. También recibe el argumento 
 ##levels, un vector con el nombre de las condiciones:
 
-contrast.matrix <- makeContrasts(h_alta-h_baja,levels=c("h_baja","h_alta"))
+# La referencia en este caso es la humedad baja. 
+
+contrast.matrix <- makeContrasts(h_alta-h_baja,levels=c("h_baja","h_alta")) 
 
 ##Calculamos el fold-change y los p-valores correspondientes para cada gen en
 ##cada uno de los constrastes especificados utilizando las funciones *constrasts.fit* 
@@ -353,11 +355,15 @@ gene.expression.barplot <- function(gene, expression.matrix,cond.names)
 }
 
 ## Análisis de expresión génica diferencial con DESeq2
+
+# En bash: 02-scripts/Bash/prepDE.py -i 03-data/samples/
+# Se genera gene.count_matrix.csv
+
 library(DESeq2)
 
 pheno.data
 
-gene.count.matrix <- read.table(file = "gene_count_matrix.csv",header = T,sep = ",")
+gene.count.matrix <- read.table(file = "04-results/gene_count_matrix.csv",header = T,sep = ",")
 head(gene.count.matrix)
 
 sapply(X = strsplit(x = gene.count.matrix$gene_id,split = "\\|"),FUN = function(x){return(x[1])})
@@ -368,9 +374,10 @@ gene.count.matrix <- gene.count.matrix[,-1]
 rownames(gene.count.matrix) <- gene.ids
 head(gene.count.matrix)
 
-dds <- DESeqDataSetFromMatrix(countData=gene.count.matrix, colData=pheno.data, design = ~ genotype)
+dds <- DESeqDataSetFromMatrix(countData=gene.count.matrix, colData=pheno.data, design = ~ condition)
 
-dds$genotype <- relevel(dds$genotype, ref = "col0")
+# Como con limma, establecemos que la referencia se la humedad baja.
+dds$condition <- relevel(dds$condition, ref = "humedad_baja")
 
 dds <- DESeq(dds) 
 res <- results(dds) 
@@ -390,7 +397,12 @@ repressed.genes.deseq2 <- repressed.genes.deseq2[!is.na(repressed.genes.deseq2)]
 length(activated.genes.deseq2)
 length(repressed.genes.deseq2)
 
-activated.atha.enrich.go <- enrichGO(gene          = activated.genes.deseq2,
+# Enriquecimiento de DESEQ2: 0 resultados.
+library(clusterProfiler)
+library(enrichplot)
+library(org.At.tair.db)
+
+activated.atha.enrich.go.deseq2 <- enrichGO(gene          = activated.genes.deseq2,
                                      OrgDb         = org.At.tair.db,
                                      ont           = "BP",
                                      pAdjustMethod = "BH",
@@ -398,9 +410,38 @@ activated.atha.enrich.go <- enrichGO(gene          = activated.genes.deseq2,
                                      readable      = FALSE,
                                      keyType = "TAIR")
 
-barplot(activated.atha.enrich.go,showCategory = 20)
-dotplot(activated.atha.enrich.go,showCategory = 20)
-emapplot(activated.atha.enrich.go,showCategory = 20)
-cnetplot(activated.atha.enrich.go,showCategory = 20)
+barplot(activated.atha.enrich.go.deseq2,showCategory = 20, font.size=8)
+dotplot(activated.atha.enrich.go.deseq2,showCategory = 20, font.size=8)
+emapplot(pairwise_termsim(activated.atha.enrich.go.deseq2),showCategory = 20, repel=T, cex_label_category=0.6)
+cnetplot(activated.atha.enrich.go.deseq2,showCategory = 20,repel=T, cex_label_category=0.6,cex_label_gene=0.4, max.overlaps=5)
 
+
+repressed.atha.enrich.go.deseq2 <- enrichGO(gene          = repressed.genes.deseq2,
+                                     OrgDb         = org.At.tair.db,
+                                     ont           = "BP",
+                                     pAdjustMethod = "BH",
+                                     pvalueCutoff  = 0.05,
+                                     readable      = FALSE,
+                                     keyType = "TAIR")
+barplot(repressed.atha.enrich.go.deseq2,showCategory = 20, font.size=8)
+dotplot(repressed.atha.enrich.go.deseq2,showCategory = 20, font.size=8, group=T)
+emapplot(pairwise_termsim(repressed.atha.enrich.go.deseq2),showCategory = 20, repel=T, cex_label_category=0.6)
+cnetplot(repressed.atha.enrich.go.deseq2,showCategory = 20,repel=T, cex_label_category=0.6,cex_label_gene=0.4, max.overlaps=5)
+
+
+activated.atha.enrich.kegg.deseq2 <- enrichKEGG(gene  = activated.genes.deseq2,
+                                         organism = "ath",
+                                         pAdjustMethod = "BH",
+                                         pvalueCutoff  = 0.05)
+df.activated.atha.enrich.kegg.deseq2 <- as.data.frame(activated.atha.enrich.kegg.deseq2)
+head(df.activated.atha.enrich.kegg.deseq2)
+
+
+repressed.atha.enrich.kegg.deseq2 <- enrichKEGG(gene  = repressed.genes.deseq2,
+                                         organism = "ath",
+                                         pAdjustMethod = "BH",
+                                         pvalueCutoff  = 0.05)
+
+df.repressed.atha.enrich.kegg.deseq2 <- as.data.frame(repressed.atha.enrich.kegg.deseq2)
+head(df.repressed.atha.enrich.kegg.deseq2)
 
